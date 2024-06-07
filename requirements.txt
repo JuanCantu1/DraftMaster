@@ -1,8 +1,5 @@
 absl-py==1.4.0
 alabaster==0.7.12
-anaconda-client==1.11.2
-anaconda-navigator==2.4.0
-anaconda-project==0.10.2
 anyio==3.6.2
 appdirs==1.4.4
 argon2-cffi==21.3.0
@@ -41,15 +38,6 @@ clyent==1.2.2
 colorama==0.4.5
 colorcet==3.0.0
 comm==0.1.2
-conda==23.3.1
-conda-build==3.24.0
-conda-content-trust==0.1.3
-conda-pack==0.6.0
-conda-package-handling==1.9.0
-conda-repo-cli==1.0.41
-conda-token==0.4.0
-conda-verify==3.4.2
-conda_package_streaming==0.7.0
 constantly==15.1.0
 contourpy==1.0.6
 cookiecutter==2.1.1
@@ -57,7 +45,6 @@ cryptography==37.0.2
 cssselect==1.1.0
 cycler==0.11.0
 cytoolz==0.12.0
-daal4py==2023.0.2
 dask==2022.6.1
 datashape==0.5.4
 debugpy==1.6.0
@@ -139,7 +126,6 @@ Keras-Preprocessing==1.1.2
 keyring==23.6.0
 kiwisolver==1.4.3
 lazy-object-proxy==1.7.1
-libarchive-c==2.9
 libclang==16.0.0
 lightning-utilities==0.10.1
 llvmlite==0.39.1
@@ -151,7 +137,6 @@ MarkupSafe==2.1.1
 matplotlib==3.7.1
 matplotlib-inline==0.1.3
 mccabe==0.7.0
-menuinst==1.4.19
 mistune==2.0.4
 mkl-fft==1.3.6
 mkl-random==1.2.2
@@ -162,7 +147,6 @@ msgpack==1.0.4
 multipledispatch==0.6.0
 munkres==1.1.4
 mypy-extensions==0.4.3
-navigator-updater==0.3.0
 nbclassic==0.3.7
 nbclient==0.6.4
 nbconvert==6.5.0
