@@ -1,7 +1,9 @@
 from flask import Flask, render_template_string, request, redirect, url_for
+from flask_socketio import SocketIO, emit
 import random
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 
 players = []
 team_captains = []
@@ -68,6 +70,7 @@ def index():
                     team_2.append(selected_player)
                     current_turn = 0
                 remaining_players.remove(selected_player)
+                emit('update_players', {'team_1': team_1, 'team_2': team_2, 'current_turn': current_turn}, broadcast=True)
             else:
                 return render_template_string(index_html_content, error="Invalid choice. Please try again.", 
                                               team_captains=team_captains, remaining_players=remaining_players,
@@ -91,4 +94,4 @@ def index():
                                   player_entry=not player_entry_complete, all_players_picked=all_players_picked)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app, debug=True)
