@@ -71,14 +71,14 @@
 
     <h2>Teams</h2>
     <h3>Team 1</h3>
-    <ul>
+    <ul id="team_1">
         {% for player in team_1 %}
         <li>{{ player }}</li>
         {% endfor %}
     </ul>
 
     <h3>Team 2</h3>
-    <ul>
+    <ul id="team_2">
         {% for player in team_2 %}
         <li>{{ player }}</li>
         {% endfor %}
@@ -88,5 +88,24 @@
         <button type="submit" name="reset">Reset</button>
     </form>
     {% endif %}
+    
+    <!-- Add SocketIO script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js" integrity="sha384-jOMcM8MWdLEz3O3HJ4VKGtHpVGj8xSQ7F0FuhObfAKWihbI6LlxRRZUMhJ2l1eJt" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('update_players', function(data) {
+            var team1List = "";
+            var team2List = "";
+            data.team_1.forEach(function(player) {
+                team1List += "<li>" + player + "</li>";
+            });
+            data.team_2.forEach(function(player) {
+                team2List += "<li>" + player + "</li>";
+            });
+            document.getElementById('team_1').innerHTML = team1List;
+            document.getElementById('team_2').innerHTML = team2List;
+        });
+    </script>
 </body>
 </html>
