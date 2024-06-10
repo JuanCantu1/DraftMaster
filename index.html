@@ -3,9 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Team Draft</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .error {
+            color: red;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>Team Draft</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class="flashes">
+        {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
 
     {% if player_entry %}
     <h2>Enter the 10 players</h2>
@@ -39,7 +60,7 @@
         <button type="submit" name="select_captains">Select Captains</button>
     </form>
     {% if error %}
-    <p style="color: red;">{{ error }}</p>
+    <p class="error">{{ error }}</p>
     {% endif %}
     {% else %}
     <form method="post">
@@ -49,7 +70,7 @@
     <p>Team Captain 2: {{ team_captains[1] }}</p>
 
     {% if error %}
-    <p style="color: red;">{{ error }}</p>
+    <p class="error">{{ error }}</p>
     {% endif %}
 
     {% if all_players_picked %}
@@ -89,7 +110,6 @@
     </form>
     {% endif %}
     
-    <!-- Add SocketIO script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js" integrity="sha384-jOMcM8MWdLEz3O3HJ4VKGtHpVGj8xSQ7F0FuhObfAKWihbI6LlxRRZUMhJ2l1eJt" crossorigin="anonymous"></script>
     <script type="text/javascript">
         var socket = io.connect('http://' + document.domain + ':' + location.port);
