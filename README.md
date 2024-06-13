@@ -35,3 +35,23 @@ The application is deployed on Heroku and can be accessed [here](https://draftma
 
 #### Conclusion
 The Team Draft Web App was created to solve a common problem: deciding team captains for game nights with friends. Now, with just a few clicks, you can input player names, select captains, and draft teams effortlessly. Powered by Flask and Flask-SocketIO, along with HTML, CSS, and JavaScript, the app offers a seamless user experience. Whether you're manually picking teams or opting for a random draft, the process is quick and fair. Deployed on Heroku, the app is easily accessible to anyone with an internet connection. It's a simple solution to a common problem, making game nights more enjoyable for all.
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#### Offline Usage
+
+The Team Draft Web App is no longer online, but you can still download and run it locally on your computer. Follow these steps to get started:
+
+1. **Download the Repository**: [Download the code from GitHub](https://github.com/JuanCantu1/DraftMaster).
+2. **Unzip the Download**: Extract the contents of the downloaded zip file.
+3. **Open Terminal**: Navigate to the project folder in your terminal.
+4. **Run the Application**: Type `python app.py` in your terminal and hit Enter.
+5. **Enjoy the App**: Access the app via your web browser at `http://127.0.0.1:5000`.
+
+**Note**: Ensure you have Python installed on your computer. You can download it from the [official Python website](https://www.python.org/downloads/).
+
+#### Video Demonstration
+
+Watch the video below to see how the Team Draft Web App works:
+
+[![Video Demonstration](https://github.com/JuanCantu1/DraftMaster/assets/109363196/8dfdb8ac-663e-4862-9622-80873a969a5e)](https://github.com/JuanCantu1/DraftMaster/assets/109363196/8dfdb8ac-663e-4862-9622-80873a969a5e)
