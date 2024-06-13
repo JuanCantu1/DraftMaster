@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Draft</title>
+</head>
+<body>
+    <h1>Team Draft</h1>
+
+    {% if player_entry %}
+    <h2>Enter the 10 players</h2>
+    <form method="post">
+        <label for="players">Players (comma separated):</label>
+        <input type="text" name="players" id="players" value="{{ players|join(', ') }}">
+        <br>
+        <button type="submit" name="set_players">Submit Players</button>
+    </form>
+    {% elif not team_selection_complete %}
+    <h2>Select Captains</h2>
+    <form method="post">
+        <button type="submit" name="random_captains">Select Captains Randomly</button>
+    </form>
+    <br>
+    <form method="post">
+        <label for="captain1">Captain 1:</label>
+        <select name="captain1" id="captain1">
+            {% for person in players %}
+            <option value="{{ person }}">{{ person }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="captain2">Captain 2:</label>
+        <select name="captain2" id="captain2">
+            {% for person in players %}
+            <option value="{{ person }}">{{ person }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button type="submit" name="select_captains">Select Captains</button>
+    </form>
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    {% else %}
+    <form method="post">
+        <button type="submit" name="random_draft">Randomly Draft All Players</button>
+    </form>
+    <p>Team Captain 1: {{ team_captains[0] }}</p>
+    <p>Team Captain 2: {{ team_captains[1] }}</p>
+
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    {% if all_players_picked %}
+    <h2>All players have been picked!</h2>
+    {% else %}
+    <h2>Remaining Players</h2>
+    <ul>
+        {% for player in remaining_players %}
+        <form method="post" style="display: inline;">
+            <input type="hidden" name="selected_player" value="{{ player }}">
+            <button type="submit" name="pick">{{ player }}</button>
+        </form>
+        {% endfor %}
+    </ul>
+
+    <h2>Make a Pick</h2>
+    <p>It's {{ team_captains[current_turn] }}'s turn to pick.</p>
+    {% endif %}
+
+    <h2>Teams</h2>
+    <h3>Team 1</h3>
+    <ul id="team_1">
+        {% for player in team_1 %}
+        <li>{{ player }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Team 2</h3>
+    <ul id="team_2">
+        {% for player in team_2 %}
+        <li>{{ player }}</li>
+        {% endfor %}
+    </ul>
+
+    <form method="post">
+        <button type="submit" name="reset">Reset</button>
+    </form>
+    {% endif %}
+    
+    <!-- Add SocketIO script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js" integrity="sha384-jOMcM8MWdLEz3O3HJ4VKGtHpVGj8xSQ7F0FuhObfAKWihbI6LlxRRZUMhJ2l1eJt" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('update_players', function(data) {
+            var team1List = "";
+            var team2List = "";
+            data.team_1.forEach(function(player) {
+                team1List += "<li>" + player + "</li>";
+            });
+            data.team_2.forEach(function(player) {
+                team2List += "<li>" + player + "</li>";
+            });
+            document.getElementById('team_1').innerHTML = team1List;
+            document.getElementById('team_2').innerHTML = team2List;
+        });
+    </script>
+</body>
+</html>
